@@ -1,0 +1,39 @@
+  .text
+  .globl main
+main:
+  push %rbp
+  mov %rsp, %rbp
+  sub $0, %rsp
+  mov $11, %rax
+  push %rax
+  mov $22, %rax
+  push %rax
+  pop %rsi
+  pop %rdi
+  mov $0, %rax
+  call foo
+  jmp .main.return
+.main.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret
+  .text
+  .globl foo
+foo:
+  push %rbp
+  mov %rsp, %rbp
+  sub $16, %rsp
+  mov %rdi, -8(%rbp)
+  mov %rsi, -16(%rbp)
+  lea -16(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -8(%rbp), %rax
+  mov (%rax), %rax
+  pop %rdi
+  add %rdi, %rax
+  jmp .foo.return
+.foo.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret

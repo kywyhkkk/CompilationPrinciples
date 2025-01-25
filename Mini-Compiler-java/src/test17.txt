@@ -1,0 +1,50 @@
+  .text
+  .globl main
+main:
+  push %rbp
+  mov %rsp, %rbp
+  sub $0, %rsp
+  mov $1, %rax
+  push %rax
+  mov $2, %rax
+  push %rax
+  mov $3, %rax
+  push %rax
+  mov $4, %rax
+  push %rax
+  mov $5, %rax
+  push %rax
+  mov $6, %rax
+  push %rax
+  mov $7, %rax
+  push %rax
+  mov $8, %rax
+  push %rax
+  pop %r9
+  pop %r8
+  pop %rcx
+  pop %rdx
+  pop %rsi
+  pop %rdi
+  mov $0, %rax
+  call add6
+  push %rax
+  mov $9, %rax
+  push %rax
+  mov $10, %rax
+  push %rax
+  mov $11, %rax
+  push %rax
+  pop %r9
+  pop %r8
+  pop %rcx
+  pop %rdx
+  pop %rsi
+  pop %rdi
+  mov $0, %rax
+  call add6
+  jmp .main.return
+.main.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret

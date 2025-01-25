@@ -1,0 +1,17 @@
+  .text
+  .globl main
+main:
+  push %rbp
+  mov %rsp, %rbp
+  sub $0, %rsp
+  mov $5, %rax
+  push %rax
+  mov $0, %rax
+  call ret3
+  pop %rdi
+  add %rdi, %rax
+  mov $9, %rax
+.main.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret

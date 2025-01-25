@@ -1,0 +1,26 @@
+  .text
+  .globl main
+main:
+  push %rbp
+  mov %rsp, %rbp
+  sub $0, %rsp
+  mov $2, %rax
+  push %rax
+  mov $1, %rax
+  pop %rdi
+  cmp %rdi, %rax
+  setg %al
+  movzb %al, %rax
+  cmp $0, %rax
+  je  .L.else.1
+  mov $3, %rax
+  jmp .main.return
+  jmp .L.end.1
+.L.else.1:
+  mov $5, %rax
+  jmp .main.return
+.L.end.1:
+.main.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret

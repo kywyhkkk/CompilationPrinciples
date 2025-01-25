@@ -1,0 +1,75 @@
+  .text
+  .globl foo
+foo:
+  push %rbp
+  mov %rsp, %rbp
+  sub $48, %rsp
+  mov %rdi, -8(%rbp)
+  mov %rsi, -16(%rbp)
+  mov %rdx, -24(%rbp)
+  mov %rcx, -32(%rbp)
+  mov %r8, -40(%rbp)
+  mov %r9, -48(%rbp)
+  lea -48(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -40(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -32(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -24(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -16(%rbp), %rax
+  mov (%rax), %rax
+  push %rax
+  lea -8(%rbp), %rax
+  mov (%rax), %rax
+  pop %rdi
+  add %rdi, %rax
+  pop %rdi
+  add %rdi, %rax
+  pop %rdi
+  add %rdi, %rax
+  pop %rdi
+  add %rdi, %rax
+  pop %rdi
+  add %rdi, %rax
+  jmp .foo.return
+.foo.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret
+  .text
+  .globl main
+main:
+  push %rbp
+  mov %rsp, %rbp
+  sub $0, %rsp
+  mov $1, %rax
+  push %rax
+  mov $2, %rax
+  push %rax
+  mov $3, %rax
+  push %rax
+  mov $4, %rax
+  push %rax
+  mov $5, %rax
+  push %rax
+  mov $6, %rax
+  push %rax
+  pop %r9
+  pop %r8
+  pop %rcx
+  pop %rdx
+  pop %rsi
+  pop %rdi
+  mov $0, %rax
+  call foo
+  jmp .main.return
+.main.return:
+  mov %rbp, %rsp
+  pop %rbp
+  ret
